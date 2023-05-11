@@ -30,13 +30,24 @@ const galleryItemsE1 = galleryItems
           );
           instance.show();
         });
+        //document.addEventListener("keydown", (e) => {
+          //const instance = basicLightbox.getInstance();
+          //if (e.code === "Escape" && instance.visible()) {
+          //  instance.close();
+          //}
+        //});
 
-        document.addEventListener("keydown", (e) => {
-          const instance = basicLightbox.getInstance();
-          if (e.code === "Escape" && instance.visible()) {
-            instance.close();
-          }
-        });
+// Додаємо слухач keydown при відкритті модалки
+  const handleKeyDown = (e) => {
+    if (e.code === "Escape") {
+      instance.close();
+    }
+  };
+  document.addEventListener("keydown", handleKeyDown);
 
-
+// Знімаємо слухач keydown при закритті модалки
+  instance.onClose(() => {
+    document.removeEventListener("keydown", handleKeyDown);
+  });
+  
 console.log(galleryItems);
