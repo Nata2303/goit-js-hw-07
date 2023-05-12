@@ -28,16 +28,16 @@ galleryE1.addEventListener("click", (e) => {
   const instance = basicLightbox.create(
     `<img src="${imageScr}" width="800" height="600">`,
     {
-      onClose(() => {
-    document.removeEventListener("keydown", handleKeyDown);
-  }),
-  onShow(() => {
-    document.addEventListener("keydown", handleKeyDown);
-  })
-            }
+      onClosen: () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    },
+    onShow: () => {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+  }
           );
           instance.show();
-        });
+        })
         //document.addEventListener("keydown", (e) => {
           //const instance = basicLightbox.getInstance();
           //if (e.code === "Escape" && instance.visible()) {
@@ -46,11 +46,11 @@ galleryE1.addEventListener("click", (e) => {
         //});
 
 // Додаємо слухач keydown при відкритті модалки
-  const handleKeyDown = (e) => {
-    if (e.code === "Escape") {
-      instance.close();
-    }
-  };
+  function handleKeyDown(e) {
+  if (e.code === "Escape") {
+    instance.close();
+  }
+}
   //document.addEventListener("keydown", handleKeyDown);
  
 console.log(galleryItems);
