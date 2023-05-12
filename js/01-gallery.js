@@ -18,15 +18,23 @@ const galleryItemsE1 = galleryItems
         const galleryE1 = document.querySelector(".gallery");
         galleryE1.insertAdjacentHTML("beforeend", galleryItemsE1);
 
-        galleryE1.addEventListener("click", (e) => {
-          e.preventDefault();
+galleryE1.addEventListener("click", (e) => {
+  e.preventDefault();
 
-          const target = e.target;
-          if (!target.classList.contains("gallery__image")) return;
+  const target = e.target;
+  if (!target.classList.contains("gallery__image")) return;
 
-          const imageScr = target.dataset.source;
-          const instance = basicLightbox.create(
-            `<img src="${imageScr}" width="800" height="600">`
+  const imageScr = target.dataset.source;
+  const instance = basicLightbox.create(
+    `<img src="${imageScr}" width="800" height="600">`,
+    {
+      onClose(() => {
+    document.removeEventListener("keydown", handleKeyDown);
+  }),
+  onShow(() => {
+    document.addEventListener("keydown", handleKeyDown);
+  })
+            }
           );
           instance.show();
         });
@@ -43,11 +51,6 @@ const galleryItemsE1 = galleryItems
       instance.close();
     }
   };
-  document.addEventListener("keydown", handleKeyDown);
-
-// Знімаємо слухач keydown при закритті модалки
-  instance.onClose(() => {
-    document.removeEventListener("keydown", handleKeyDown);
-  });
-  
+  //document.addEventListener("keydown", handleKeyDown);
+ 
 console.log(galleryItems);

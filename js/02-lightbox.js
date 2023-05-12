@@ -20,17 +20,11 @@ const markup = galleryItems
 galleryList.insertAdjacentHTML("beforeend", markup);
 
 const galleryLinks = document.querySelectorAll(".gallery__link");
-
-galleryLinks.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-    const lightbox = new SimpleLightbox(".gallery a", {
+const lightbox = new SimpleLightbox(".gallery a", {
       captions: true,
       captionsData: "alt",
       captionDelay: 250,
     });
     lightbox.open();
-  });
-});
 
 console.log(galleryItems);
