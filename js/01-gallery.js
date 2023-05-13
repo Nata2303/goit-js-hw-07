@@ -28,7 +28,7 @@ galleryE1.addEventListener("click", (e) => {
   const instance = basicLightbox.create(
     `<img src="${imageScr}" width="800" height="600">`,
     {
-      onClosen: () => {
+      onClose: () => {
       document.removeEventListener("keydown", handleKeyDown);
     },
     onShow: () => {
@@ -38,19 +38,12 @@ galleryE1.addEventListener("click", (e) => {
           );
           instance.show();
         })
-        //document.addEventListener("keydown", (e) => {
-          //const instance = basicLightbox.getInstance();
-          //if (e.code === "Escape" && instance.visible()) {
-          //  instance.close();
-          //}
-        //});
-
+        
 // Додаємо слухач keydown при відкритті модалки
   function handleKeyDown(e) {
   if (e.code === "Escape") {
     instance.close();
   }
 }
-  //document.addEventListener("keydown", handleKeyDown);
  
 console.log(galleryItems);
